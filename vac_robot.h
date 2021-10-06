@@ -1,1 +1,0 @@
-const int LEFT_MOTOR1 = 4 //digital 4
