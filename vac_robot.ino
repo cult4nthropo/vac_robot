@@ -20,11 +20,29 @@ const int SENSOR_RIGHT = 1; //analog 1
 
 const int BATTERY = 4; analog 3
 
+//put float value for charged battery
+//put min and max for battery (const)
+//put min distance for sensor
 
 
 void setup() {
   // put your setup code here, to run once:
+  //initialize outputs and inputs
+  pinMode(MOTOR_RIGHT1, OUTPUT);
+  pinMode(MOTOR_RIGHT2, OUTPUT);
+  pinMode(MOTOR_LEFT1, OUTPUT);
+  pinMode(MOTOR_LEFT2, OUTPUT);
+  pinMode(FAN, OUTPUT);
 
+  pinMode(SENSOR_LEFT, INPUT);
+  pinMode(SENSOR_RIGHT, INPUT);
+
+  pinMode(BUMBER1, INPUT_PULLUP); //corrected. I thought just INPUT - try to understand PULLUP
+  pinMode(BUMBER2, INPUT__PULLUP); //try to understand PULLUP
+
+  pinMode(LED, OUTPUT);
+
+  pinMode(BATTERY, INPUT);
 }
 
 void loop() {
