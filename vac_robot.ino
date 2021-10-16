@@ -38,7 +38,7 @@ void setup() {
   pinMode(SENSOR_RIGHT, INPUT);
 
   pinMode(BUMBER1, INPUT_PULLUP); //corrected. I thought just INPUT - try to understand PULLUP
-  pinMode(BUMBER2, INPUT__PULLUP); //try to understand PULLUP
+  pinMode(BUMBER2, INPUT_PULLUP); //try to understand PULLUP
 
   pinMode(LED, OUTPUT);
 
