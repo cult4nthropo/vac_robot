@@ -64,39 +64,43 @@ void setup() {
 
 //functions
 
-def blinkLED(){
+void blinkLED(){
   
 }
 
-def sensorDistance(){
+void sensorDistance(){
+ digitalRead(SENSOR_LEFT, HIGH);
+  While
+}
+
+void bothMotors(){
 
 }
 
-def bothMotors(){
+void leftMotor(){
 
 }
 
-def leftMotor(){
+void rightMotor(){
 
 }
 
-def rightMotor(){
+void backwardMotor(){
 
 }
 
-def backwardMotor(){
+void stopMotor(){
+  digitalWrite(MOTOR_LEFT1,0);
+  digitalWrite(MOTOR_LEFT2,0);
+  digitalWrite(MOTOR_RIGHT1,0);
+  digitalWrite(MOTOR_RIGHT2,0);
+}
+
+double readBattery(){
 
 }
 
-def stopMotor(){
-
-}
-
-def readBattery(){
-
-}
-
-def batteryControl(){
+void batteryControl(){
 
 }
 
