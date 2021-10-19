@@ -10,7 +10,7 @@ const int BUMBER1 = 10; //digital 10 bumber 1
 const int BUMBER2 = 11; //digital 11 bumber 2
 
 //fan output
-const int FAN = 12; //MosFet to fan
+const int FAN = 12; 
 
 const int LED = 13; 
 
@@ -20,9 +20,9 @@ const int SENSOR_RIGHT = 1; //analog 1
 
 const int BATTERY = 4; 
 
-const float BATTERY_CHARGED;
-const float BATTERY_LOW;
-const float BATTERY_HIGH;
+const float BATTERY_CHARGED = 11.1;
+const float PWM_MAX = 130; //check this again (should be correct vor 11.1V)
+const float PWM_MIN = 75;// check this again (should be vor 9V or what?
 const int SENSOR_MIN = 30;
 
 //variables
@@ -53,7 +53,7 @@ void setup() {
   blinkLED(5,1);
   
   // wait 5s and initialize fan, if voltage ok
-  if(readBattery(BATTERY)>12.1){ //doublecheck value
+  if(readBattery(BATTERY)>11.1){
     digitalWrite(FAN, HIGH);
     delay(1000);
     else:
@@ -69,12 +69,11 @@ void blinkLED(){
 }
 
 void sensorDistance(){
- digitalRead(SENSOR_LEFT, HIGH);
-  While
+ 
 }
 
 void bothMotors(){
-
+ 
 }
 
 void leftMotor(){
@@ -97,7 +96,7 @@ void stopMotor(){
 }
 
 double readBattery(){
-
+ 
 }
 
 void batteryControl(){
