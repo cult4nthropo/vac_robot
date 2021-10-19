@@ -15,14 +15,20 @@ const int FAN = 12; //MosFet to fan
 const int LED = 13; 
 
 //analog sensors
-const int SENSOR_LEFT = 0; //analog 0
+const int SENSOR_LEFT = 0; //analog 0 //check where the other both sensor contacts come from
 const int SENSOR_RIGHT = 1; //analog 1
 
-const int BATTERY = 4; analog 3
+const int BATTERY = 4; 
 
-//put float value for charged battery
-//put min and max for battery (const)
-//put min distance for sensor
+const float BATTERY_CHARGED;
+const float BATTERY_LOW;
+const float BATTERY_HIGH;
+const int SENSOR_MIN = 30;
+
+//variables
+int bumberState = 0;
+int counter = 0;
+boolean control = true;
 
 
 void setup() {
@@ -34,7 +40,7 @@ void setup() {
   pinMode(MOTOR_LEFT2, OUTPUT);
   pinMode(FAN, OUTPUT);
 
-  pinMode(SENSOR_LEFT, INPUT);
+  pinMode(SENSOR_LEFT, INPUT); //see sensor const: where it comes from determines, which pinMode it should have
   pinMode(SENSOR_RIGHT, INPUT);
 
   pinMode(BUMBER1, INPUT_PULLUP); //corrected. I thought just INPUT - try to understand PULLUP
@@ -43,9 +49,60 @@ void setup() {
   pinMode(LED, OUTPUT);
 
   pinMode(BATTERY, INPUT);
+  
+  blinkLED(5,1);
+  
+  // wait 5s and initialize fan, if voltage ok
+  if(readBattery(BATTERY)>12.1){ //doublecheck value
+    digitalWrite(FAN, HIGH);
+    delay(1000);
+    else:
+    //nothing
+  }
+  
+}
+
+//functions
+
+def blinkLED(){
+  
+}
+
+def sensorDistance(){
+
+}
+
+def bothMotors(){
+
+}
+
+def leftMotor(){
+
+}
+
+def rightMotor(){
+
+}
+
+def backwardMotor(){
+
+}
+
+def stopMotor(){
+
+}
+
+def readBattery(){
+
+}
+
+def batteryControl(){
+
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+  //set everything up, if battery is at max
+  
 
 }
