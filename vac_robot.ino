@@ -69,9 +69,35 @@ double readSensor (int sensor){
   
   }
 
-//functions for motors: one to go forward, one to got right, one to go left, one to go backwards, one to 
+//function for motors to go forward
 void moveForward(int moveTime){
-  
+  analogWrite(MOTOR_LEFT1, MIN_POWER);
+  analogWrite(MOTOR_LEFT2, 0);
+  analogWrite(MOTOR_RIGHT1, MIN_POWER);
+  analogWrite(MOTOR_RIGHT2, 0);
+  }
+
+//function for motors to go backwards
+void moveBackwards(int moveTime){
+  analogWrite(MOTOR_LEFT1, 0);
+  analogWrite(MOTOR_LEFT2, MIN_POWER);
+  analogWrite(MOTOR_RIGHT1, 0);
+  analogWrite(MOTOR_RIGHT2, MIN_POWER);
+  }
+
+//function for motors to move left
+void moveLeft(int moveTime){
+  analogWrite(MOTOR_LEFT1, MIN_POWER + 20);
+  analogWrite(MOTOR_LEFT2, 0);
+  analogWrite(MOTOR_RIGHT1, 0);
+  analogWrite(MOTOR_RIGHT2, MIN_POWER);
+}
+
+void moveRight(int moveTime){
+  analogWrite(MOTOR_LEFT1, 0);
+  analogWrite(MOTOR_LEFT2, MIN_POWER);
+  analogWrite(MOTOR_RIGHT1, MIN_POWER + 20);
+  analogWrite(MOTOR_RIGHT2, 0);
   }
 
 //stop all the motors
