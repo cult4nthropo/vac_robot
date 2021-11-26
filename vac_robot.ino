@@ -1,4 +1,4 @@
-
+//import random
 
 //analog pins for sensors
 const int SENSOR_LEFT1 = 0; //analogIn 0 for left sensor
@@ -65,7 +65,7 @@ Serial.begin(9600);
 //adressing of sensors in the loop
 double readSensor (int sensor){
   double distance = pow(analogRead(sensor), -0.857); //messured distance is the base, -0,857 the exponent
-  return (distance * 167.9);
+  return (distance * 167.9); 
   
   }
 
@@ -118,20 +118,58 @@ float readBattery(int BATTERY){
   }
 
 //function to turn everything of, if battery state is at min
-void batteryCritical(int BATTERY) {
+bool batteryCritical(int BATTERY) {
   float batteryStatus;
   batteryStatus = readBattery(BATTERY);
   if(batteryStatus <= 11.1){
     batteryControl = false;
     }
    else{
-    //shouldn't there be anything?? something like continue?
+    batteryControl = true;
     }
+   return batteryControl;
   }
   
 void loop() {
   // put your main code here, to run repeatedly:
   //set everything up, if battery is at max
-  
 
-}
+  batteryCritical(BATTERY);
+  
+  while (batteryCritical(BATTERY) == false) {
+    digitalWrite(FAN_MOTOR, HIGH);
+    readSensor(SENSOR_LEFT1);
+    readSensor(SENSOR_RIGHT1);
+    readSensor(SENSOR_LEFT2);
+    readSensor(SENSOR_RIGHT2);
+
+    if ((readSensor(SENSOR_LEFT1) and readSensor(SENSOR_RIGHT1) and readSensor(SENSOR_LEFT2) and readSensor(SENSOR_RIGHT2) > MIN_DISTANCE)){
+      moveForward(3000); //check correct integer for moveTime
+      }
+      else if (((readSensor(SENSOR_LEFT1) or readSensor(SENSOR_LEFT2)) < MIN_DISTANCE) and (readSensor(SENSOR_RIGHT1) and readSensor(SENSOR_RIGHT2)) > MIN_DISTANCE) {
+        moveRight(1500);
+        moveForward(3000);
+      }
+        else if (((readSensor(SENSOR_RIGHT1) or readSensor(SENSOR_RIGHT2)) < MIN_DISTANCE) and (readSensor(SENSOR_LEFT1) and readSensor(SENSOR_LEFT2)) > MIN_DISTANCE) {
+          moveLeft(1500);
+          moveForward(3000);
+        }
+        else {
+          //int direction = random(1,2)
+        //  if (direction ==1){
+          moveBackwards(1500);
+          moveLeft(1500);
+          moveForward(3000);
+        //  }
+          //else {
+           // moveBackwards(1500);
+            //moveRight(1500);
+            //moveForward(3000);
+         // }
+          }
+      batteryCritical(BATTERY);
+      
+          }
+      stopMotors();
+      digitalWrite(FAN_MOTOR, LOW);
+        }
