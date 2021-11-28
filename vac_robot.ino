@@ -1,4 +1,4 @@
-//import random
+#include <stdlib.h>
 
 //analog pins for sensors
 const int SENSOR_LEFT1 = 0; //analogIn 0 for left sensor
@@ -144,28 +144,28 @@ void loop() {
     readSensor(SENSOR_RIGHT2);
 
     if ((readSensor(SENSOR_LEFT1) and readSensor(SENSOR_RIGHT1) and readSensor(SENSOR_LEFT2) and readSensor(SENSOR_RIGHT2) > MIN_DISTANCE)){
-      moveForward(3000); //check correct integer for moveTime
+      moveForward(500); //moveTime in ms
       }
       else if (((readSensor(SENSOR_LEFT1) or readSensor(SENSOR_LEFT2)) < MIN_DISTANCE) and (readSensor(SENSOR_RIGHT1) and readSensor(SENSOR_RIGHT2)) > MIN_DISTANCE) {
-        moveRight(1500);
-        moveForward(3000);
+        moveRight(150);
+        moveForward(500);
       }
         else if (((readSensor(SENSOR_RIGHT1) or readSensor(SENSOR_RIGHT2)) < MIN_DISTANCE) and (readSensor(SENSOR_LEFT1) and readSensor(SENSOR_LEFT2)) > MIN_DISTANCE) {
           moveLeft(1500);
           moveForward(3000);
         }
         else {
-          //int direction = random(1,2)
-        //  if (direction ==1){
-          moveBackwards(1500);
-          moveLeft(1500);
-          moveForward(3000);
-        //  }
-          //else {
-           // moveBackwards(1500);
-            //moveRight(1500);
-            //moveForward(3000);
-         // }
+          int direction = rand()% 2; //should give random 0 or 1 
+          if (direction == 0){
+          moveBackwards(150);
+          moveLeft(150);
+          moveForward(500);
+          }
+          else {
+            moveBackwards(150);
+            moveRight(150);
+            moveForward(500);
+         }
           }
       batteryCritical(BATTERY);
       
