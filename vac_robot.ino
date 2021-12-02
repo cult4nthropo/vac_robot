@@ -123,18 +123,17 @@ bool batteryCritical(int BATTERY) {
   batteryStatus = readBattery(BATTERY);
   if(batteryStatus <= 11.1){
     batteryControl = false;
-    }
-   else{
-    batteryControl = true;
-    }
-   return batteryControl;
   }
+  else{
+    batteryControl = true;
+  }
+   return batteryControl;
+ }
   
 void loop() {
   // put your main code here, to run repeatedly:
   //set everything up, if battery is at max
 
-  batteryCritical(BATTERY);
   
   while (batteryCritical(BATTERY) == false) {
     digitalWrite(FAN_MOTOR, HIGH);
@@ -145,31 +144,30 @@ void loop() {
 
     if ((readSensor(SENSOR_LEFT1) and readSensor(SENSOR_RIGHT1) and readSensor(SENSOR_LEFT2) and readSensor(SENSOR_RIGHT2) > MIN_DISTANCE)){
       moveForward(500); //moveTime in ms
-      }
-      else if (((readSensor(SENSOR_LEFT1) or readSensor(SENSOR_LEFT2)) < MIN_DISTANCE) and (readSensor(SENSOR_RIGHT1) and readSensor(SENSOR_RIGHT2)) > MIN_DISTANCE) {
-        moveRight(150);
-        moveForward(500);
-      }
-        else if (((readSensor(SENSOR_RIGHT1) or readSensor(SENSOR_RIGHT2)) < MIN_DISTANCE) and (readSensor(SENSOR_LEFT1) and readSensor(SENSOR_LEFT2)) > MIN_DISTANCE) {
-          moveLeft(1500);
-          moveForward(3000);
-        }
-        else {
-          int direction = rand()% 2; //should give random 0 or 1 
-          if (direction == 0){
-          moveBackwards(150);
-          moveLeft(150);
-          moveForward(500);
-          }
-          else {
-            moveBackwards(150);
-            moveRight(150);
-            moveForward(500);
-         }
-          }
-      batteryCritical(BATTERY);
-      
-          }
-      stopMotors();
-      digitalWrite(FAN_MOTOR, LOW);
-        }
+     }
+     else if (((readSensor(SENSOR_LEFT1) or readSensor(SENSOR_LEFT2)) < MIN_DISTANCE) and (readSensor(SENSOR_RIGHT1) and readSensor(SENSOR_RIGHT2)) > MIN_DISTANCE) {
+      moveRight(150);
+      moveForward(500);
+     }
+     else if (((readSensor(SENSOR_RIGHT1) or readSensor(SENSOR_RIGHT2)) < MIN_DISTANCE) and (readSensor(SENSOR_LEFT1) and readSensor(SENSOR_LEFT2)) > MIN_DISTANCE) {
+      moveLeft(150);
+      moveForward(300);
+     }
+     else {
+      int direction = rand()% 2; //should give random 0 or 1 
+      if (direction == 0){
+      moveBackwards(150);
+      moveLeft(150);
+      moveForward(500);
+     }
+      else {
+       moveBackwards(150);
+       moveRight(150);
+       moveForward(500);
+     }
+   }
+    batteryCritical(BATTERY);
+  }
+  stopMotors();
+  digitalWrite(FAN_MOTOR, LOW);
+ }
