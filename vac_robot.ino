@@ -171,11 +171,11 @@ void loop()
           moveForward(500);
         }
       }
-      batteryCritical(BATTERY); 
+      batteryCritical(); 
     }
   };
 
-  while (!batteryCritical(BATTERY))
+  while (!batteryCritical())
   {
     doVacuuming();
   }
